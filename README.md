@@ -30,5 +30,5 @@ Both authors are currently enrolled in the University of Oregon's Bioinformatics
 ## To compile for submission
 
 ```bash
-pandoc README.md -f markdown -t html -s -o tyler_brian_ML_proposal.html --metadata title="TB-TAD" --metadata author="Tyler Collins, Brian Palmer"
+pandoc README.md -f markdown -t pdf -o tyler_brian_ML_proposal.pdf --metadata title="TB-TAD" --metadata author="Tyler Collins, Brian Palmer"
 ```
