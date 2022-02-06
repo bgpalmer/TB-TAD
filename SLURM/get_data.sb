@@ -2,8 +2,8 @@
 #SBATCH --partition=bgmp
 #SBATCH --account=bgmp
 #SBATCH --job-name=get_data_ml
-#SBATCH --output=get_data_ml_$1_%j.out
-#SBATCH --error=get_data_ml_$1_%j.out
+#SBATCH --output=get_data_ml_%j.out
+#SBATCH --error=get_data_ml_%j.out
 #SBATCH --time=1-00:00:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
