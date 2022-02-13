@@ -25,9 +25,7 @@ for(i in 1:(nrow(TAD)-1)){
 
 bdsdf<-bdsdf[-(which(bdsdf[,"seqnames"]=="0")),] #remove the rows inbetween chromosomes
 
-print(length(bdsdf$seqnames))
-print(length(bdsdf$start))
-print(length(bdsdf$end))
+save(list=ls(),file='bdsdf.Rdata')
 
 # bdsGR <- GRanges(seqnames = bdsdf[,"seqnames"],
 #                       ranges = IRanges(start=as.numeric(bdsdf[,"start"]),end=as.numeric(bdsdf[,"end"])),

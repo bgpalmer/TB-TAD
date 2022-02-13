@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#SBATCH --partition=bgmp
+#SBATCH --account=bgmp
+#SBATCH --job-name=get_data_ml
+#SBATCH --output=preprocess_r_%j.out
+#SBATCH --error=preprocess_r_%j.out
+#SBATCH --time=1-00:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+
+/usr/bin/time -v Rscript preprocess.r
