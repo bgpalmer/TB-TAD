@@ -1,6 +1,0 @@
-https://ftp.ncbi.nlm.nih.gov/geo/series/GSE63nnn/GSE63525/suppl/GSE63525_GM12878_primary_intrachromosomal_contact_matrices.tar.gz,intrachromosomal contact Hg38
-https://ftp.ncbi.nlm.nih.gov/geo/series/GSE66nnn/GSE66733/suppl/GSE66733_Hi-C_MCF7_MCF10A_processed_HiCfiles.tar.gz, Normal breast epithelial tissue MCF7
-https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE62111&format=file, lymphocyte methylation data
-https://ftp.ncbi.nlm.nih.gov/geo/series/GSE87nnn/GSE87177/suppl/GSE87177_Matrix_processed.txt.gz, T47D Methylation 
-https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63525&format=file, tad raw
-https://ftp.ncbi.nlm.nih.gov/geo/series/GSE105nnn/GSE105697/suppl/GSE105697_ENCFF183RCR_topologically_associated_domains_GRCh38.bed.gz, T47D TAD data
