@@ -56,7 +56,15 @@ GRanges object with 485577 ranges and 2 metadata columns:
   [485577]     chr3  86662155      * |   0.94185         0
   -------
   seqinfo: 24 sequences from an unspecified genome; no seqlengths
+
+
 ```
+An example of the raw data inputs being used can be found at the link below:
+
+Hi-C data: [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE18199]
+
+This data contains 8 samples of Hi-C data from two different Cell lines and is an example of the initial input that we use before we process it into an Rdata object. 
+
 
 ## Initial results
 
@@ -70,6 +78,8 @@ After sorting through some inital troubleshooting problems with Talapas organiza
 
 1. Data retrieval has not been clear cut
 2. Data preparation has had a stumbling block (likely because of the data)
+3. Our data currently maps to GRCh37, which is a previous human genome and the one that was published when our data was collected, which may mean we are using some innacurate input data.
+4. Some of the cancer cell lines we wanted to test our data on seem to be aneuploidy, the cancer cell lines have a different number of chromosomes than a normal human cell, which may mean that we need to come up with another normalization process to test our model on that data. 
 
 We are pushing through and think that we can have a successful outcome. We are excited to have increased exposure to GenomicRanges objects, as these are used in our field of study (bioinformatics) here at the University of Oregon.
 
