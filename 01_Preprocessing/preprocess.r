@@ -9,6 +9,7 @@ library(plyr)
 
 # #Get TAD boundaries from TAD file
 # TAD<- read_table(paste0(Sys.getenv('DATADIR'), "/Hi-C/GSM455133_30E0LAAXX.1.maq.hic.summary.binned.txt"),col_names = F)
+TAD<- read_table(paste0(Sys.getenv('DATADIR'), "/TADs/GM12878_Lieberman-raw_TADs.txt"), col_names = F)
 # head(TAD)
 # #colnames(TAD)[1:3]<- c("X1","X2","X3") #chr, start, stop
 # bdsdf <-matrix("0",nrow=nrow(TAD),ncol=3)
