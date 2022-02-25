@@ -8,7 +8,45 @@
 ###############
 ###############
 
-bdsGR <-bdsGR_GM12878 #select the cell line you want
+library(GenomicRanges)
+
+load('../01_Preprocessing/pre_info_08132020.Rdata') #preprocessed ChIPseq and epigenomic and genomic data
+
+
+region_bin_len=10000 #width of each genomic region
+test_ratio=3/10 #ratio of the testing set
+neighbors=10 #number of neghboring bins to consider
+
+region_GR<-GRanges()
+for (kk in 1:23){
+  chrklen<-chr_info_2$X2[chr_info_2$X1%in% chrnames[kk]]
+  chrkseq<-seq(from=1,by=region_bin_len,to=chrklen)
+  bin_num<-length(chrkseq)
+  tr<-rep(1,(bin_num-1))
+  tr[sample(1:(bin_num-1),size = test_ratio*(bin_num-1))]<-0
+  tmpGR<-GRanges(seqnames = chrnames[kk]
+                 ,ranges = IRanges(start=chrkseq[1:(bin_num-1)],end = chrkseq[2:bin_num])
+                 ,strand = '*'
+                 ,train= tr
+  )
+  region_GR<-append(region_GR,tmpGR)
+}
+
+chr_info_tc <- chr_info_1[which(chr_info_1$type %in% c("centromere","telomere")),] # identify telomere and centromere regions
+
+print(chr_info_tc)
+
+chr_info_tc <- GRanges(seqnames = chr_info_tc$chrom,
+                       ranges = IRanges(start=chr_info_tc$chromStart, end = chr_info_tc$chromEnd),
+                       strand = "*",
+                       type = chr_info_tc$type)
+
+tmp_ov <- findOverlaps(region_GR, chr_info_tc,type="any")
+region_GR$telocentro <- "0"
+region_GR$telocentro[tmp_ov@from]<- "1"
+
+
+bdsGR <-pre_info_08132020.Rdata #select the cell line you want
 
 gen_data_1<-function(train_region=region_GR,by_len=10000,n_neighbors=10){
   ana_list<-list()
