@@ -11,3 +11,6 @@
 * `BiocManager::install("FDb.InfiniumMethylation.hg19")`
 * `tidyverse`
 * `plyr`
+* `BiocManager::install("rCGH")
+* `install.packages('data.table')`
+* `tictoc`
