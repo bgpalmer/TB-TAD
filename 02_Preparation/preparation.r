@@ -34,7 +34,7 @@ for (kk in 1:23){
 
 chr_info_tc <- chr_info_1[which(chr_info_1$type %in% c("centromere","telomere")),] # identify telomere and centromere regions
 
-print(chr_info_tc)
+#print(chr_info_tc)
 
 chr_info_tc <- GRanges(seqnames = chr_info_tc$chrom,
                        ranges = IRanges(start=chr_info_tc$chromStart, end = chr_info_tc$chromEnd),
@@ -77,6 +77,50 @@ gen_data_1<-function(train_region=region_GR,by_len=10000,n_neighbors=10){
 	mcols(anGR)[,'me']<-NA
 	tmp2<-tmp1[,.(mv=mean(prob,na.rm=T)),by=id]
 	mcols(anGR)[,'me'][tmp2$id]<-tmp2$mv
+
+
+  ######################################
+  ##  gen neighbours 
+  vars<-names(mcols(ana_list[[1]]))
+  vars<-setdiff(vars,c('bdsGR'))
+  
+  tictoc::tic()
+  
+  ana_dt_old<-as.data.table(ldply(ana_list,
+                                  function(x){cbind(chr=as.vector(x@seqnames),
+                                                    as.data.frame(x@ranges)[,1:2],
+                                                    as.data.frame(mcols(x)))}))
+  setkey(ana_dt_old,chr,start,end)
+  ana_dt_old$id<-1:dim(ana_dt_old)[1]
+  ana_dt_old[,paste(rep(vars,each=n_neighbors),'L',rep(1:n_neighbors,length(vars)),sep='_'):=rep(0,dim(ana_dt_old)[1])]
+  ana_dt_old[,paste(rep(vars,each=n_neighbors),'R',rep(1:n_neighbors,length(vars)),sep='_'):=rep(0,dim(ana_dt_old)[1])]
+  
+  rs<-dim(ana_dt_old)[1]
+  for(j in 1:n_neighbors){
+    for(i in 1:length(vars)){
+      ana_dt_old[[paste(vars[i],'L',j,sep='_')]]<-c(rep(NA,j),ana_dt_old[[vars[i]]][1:(rs-j)])
+      ana_dt_old[[paste(vars[i],'R',j,sep='_')]]<-c(ana_dt_old[[vars[i]]][(j+1):rs],rep(NA,j))
+    }
+  }
+  tictoc::toc()
+  
+  ana_dt_old$del<-F
+  del_bin<-function(del,id){
+    n<-length(id)
+    del[c(1:n_neighbors,(n-n_neighbors+1):n)]<-T
+    return(del)
+  }
+  ana_dt_old[,.(del=del_bin(del,id)),by=chr]->t1
+  ana_dt_old$del<-t1$del
+  ana_dt_old_bak<-ana_dt_old
+  ana_dt_old<-ana_dt_old[del!=T]
+  ana_dt_old$del<-NULL
+  
+  ana_dt_old[is.na(ana_dt_old)]<-0
+  ana_dt_old$bds<-factor(ana_dt_old$bds,levels = c(0,1),labels = c(0,1))
+  ana_dt_old$chr<-factor(ana_dt_old$chr,levels=chrnames,labels=chrnames)
+  return(ana_dt_old)
+}
 
 
 all_data_1 <- gen_data_1(region_GR,by_len=region_bin_len,n_neighbors=neighbors)

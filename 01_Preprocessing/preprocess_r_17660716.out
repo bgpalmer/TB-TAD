@@ -1,0 +1,452 @@
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.6     ✔ dplyr   1.0.7
+✔ tidyr   1.2.0     ✔ stringr 1.4.0
+✔ readr   2.1.2     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::collapse()   masks IRanges::collapse()
+✖ dplyr::combine()    masks BiocGenerics::combine()
+✖ dplyr::desc()       masks IRanges::desc()
+✖ tidyr::expand()     masks S4Vectors::expand()
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::first()      masks S4Vectors::first()
+✖ dplyr::lag()        masks stats::lag()
+✖ ggplot2::Position() masks BiocGenerics::Position(), base::Position()
+✖ purrr::reduce()     masks GenomicRanges::reduce(), IRanges::reduce()
+✖ dplyr::rename()     masks S4Vectors::rename()
+✖ dplyr::slice()      masks IRanges::slice()
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+The following object is masked from ‘package:GenomicRanges’:
+
+    shift
+
+The following object is masked from ‘package:IRanges’:
+
+    shift
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    first, second
+
+------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: ‘plyr’
+
+The following objects are masked from ‘package:dplyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following object is masked from ‘package:purrr’:
+
+    compact
+
+The following object is masked from ‘package:IRanges’:
+
+    desc
+
+The following object is masked from ‘package:S4Vectors’:
+
+    rename
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_character(),
+  X2 = col_double(),
+  X3 = col_double()
+)
+
+Bioconductor version 3.14 (BiocManager 1.30.16), R 4.1.2 (2021-11-01)
+Installing package(s) 'BiocVersion', 'FDb.InfiniumMethylation.hg19'
+also installing the dependencies ‘filelock’, ‘plogr’, ‘BiocFileCache’, ‘png’, ‘RSQLite’, ‘biomaRt’, ‘KEGGREST’, ‘GenomicFeatures’, ‘TxDb.Hsapiens.UCSC.hg19.knownGene’, ‘org.Hs.eg.db’, ‘AnnotationDbi’
+
+trying URL 'https://cloud.r-project.org/src/contrib/filelock_1.0.2.tar.gz'
+Content type 'application/x-gzip' length 12377 bytes (12 KB)
+==================================================
+downloaded 12 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/plogr_0.2.0.tar.gz'
+Content type 'application/x-gzip' length 7795 bytes
+==================================================
+downloaded 7795 bytes
+
+trying URL 'https://bioconductor.org/packages/3.14/bioc/src/contrib/BiocFileCache_2.2.1.tar.gz'
+Content type 'application/x-gzip' length 295713 bytes (288 KB)
+==================================================
+downloaded 288 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/png_0.1-7.tar.gz'
+Content type 'application/x-gzip' length 24990 bytes (24 KB)
+==================================================
+downloaded 24 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/RSQLite_2.2.10.tar.gz'
+Content type 'application/x-gzip' length 3655877 bytes (3.5 MB)
+==================================================
+downloaded 3.5 MB
+
+trying URL 'https://bioconductor.org/packages/3.14/bioc/src/contrib/biomaRt_2.50.3.tar.gz'
+Content type 'application/x-gzip' length 665523 bytes (649 KB)
+==================================================
+downloaded 649 KB
+
+trying URL 'https://bioconductor.org/packages/3.14/bioc/src/contrib/KEGGREST_1.34.0.tar.gz'
+Content type 'application/x-gzip' length 25778 bytes (25 KB)
+==================================================
+downloaded 25 KB
+
+trying URL 'https://bioconductor.org/packages/3.14/bioc/src/contrib/GenomicFeatures_1.46.4.tar.gz'
+Content type 'application/x-gzip' length 1375475 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://bioconductor.org/packages/3.14/data/annotation/src/contrib/TxDb.Hsapiens.UCSC.hg19.knownGene_3.2.2.tar.gz'
+Content type 'application/x-gzip' length 18669702 bytes (17.8 MB)
+==================================================
+downloaded 17.8 MB
+
+trying URL 'https://bioconductor.org/packages/3.14/data/annotation/src/contrib/org.Hs.eg.db_3.14.0.tar.gz'
+Content type 'application/x-gzip' length 82195112 bytes (78.4 MB)
+==================================================
+downloaded 78.4 MB
+
+trying URL 'https://bioconductor.org/packages/3.14/bioc/src/contrib/AnnotationDbi_1.56.2.tar.gz'
+Content type 'application/x-gzip' length 4330396 bytes (4.1 MB)
+==================================================
+downloaded 4.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.14/bioc/src/contrib/BiocVersion_3.14.0.tar.gz'
+Content type 'application/x-gzip' length 969 bytes
+==================================================
+downloaded 969 bytes
+
+trying URL 'https://bioconductor.org/packages/3.14/data/annotation/src/contrib/FDb.InfiniumMethylation.hg19_2.2.0.tar.gz'
+Content type 'application/x-gzip' length 38996322 bytes (37.2 MB)
+==================================================
+downloaded 37.2 MB
+
+* installing *source* package ‘filelock’ ...
+** package ‘filelock’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+rm -f filelock.so init.o filelock-unix.o locklist.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib   -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c init.c -o init.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib   -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c filelock-unix.c -o filelock-unix.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib   -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c locklist.c -o locklist.o
+x86_64-conda-linux-gnu-cc -shared -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/lib -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -o filelock.so init.o filelock-unix.o locklist.o -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/lib -lR
+installing to /gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/00LOCK-filelock/00new/filelock/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (filelock)
+* installing *source* package ‘plogr’ ...
+** package ‘plogr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (plogr)
+* installing *source* package ‘png’ ...
+** package ‘png’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib   `libpng-config --cflags` -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c read.c -o read.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib   `libpng-config --cflags` -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c write.c -o write.o
+x86_64-conda-linux-gnu-cc -shared -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/lib -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -o png.so read.o write.o -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -lpng16 -lm -lz -lm -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/lib -lR
+installing to /gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/00LOCK-png/00new/png/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (png)
+* installing *source* package ‘BiocVersion’ ...
+** using staged installation
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocVersion)
+* installing *source* package ‘RSQLite’ ...
+** package ‘RSQLite’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c DbColumn.cpp -o DbColumn.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c DbColumnDataSource.cpp -o DbColumnDataSource.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c DbColumnDataSourceFactory.cpp -o DbColumnDataSourceFactory.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c DbColumnStorage.cpp -o DbColumnStorage.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c DbConnection.cpp -o DbConnection.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c DbDataFrame.cpp -o DbDataFrame.o
+In file included from vendor/boost/smart_ptr/detail/sp_thread_sleep.hpp:22,
+                 from vendor/boost/smart_ptr/detail/yield_k.hpp:23,
+                 from vendor/boost/smart_ptr/detail/spinlock_gcc_atomic.hpp:14,
+                 from vendor/boost/smart_ptr/detail/spinlock.hpp:42,
+                 from vendor/boost/smart_ptr/detail/spinlock_pool.hpp:25,
+                 from vendor/boost/smart_ptr/shared_ptr.hpp:29,
+                 from vendor/boost/shared_ptr.hpp:17,
+                 from DbColumn.h:7,
+                 from DbDataFrame.cpp:3:
+vendor/boost/config/pragma_message.hpp:24:34: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+   24 | # define BOOST_PRAGMA_MESSAGE(x) _Pragma(BOOST_STRINGIZE(message(x)))
+      |                                  ^~~~~~~
+vendor/boost/config/pragma_message.hpp:24:34: note: in definition of macro 'BOOST_PRAGMA_MESSAGE'
+   24 | # define BOOST_PRAGMA_MESSAGE(x) _Pragma(BOOST_STRINGIZE(message(x)))
+      |                                  ^~~~~~~
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c DbResult.cpp -o DbResult.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c RcppExports.cpp -o RcppExports.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c SqliteColumnDataSource.cpp -o SqliteColumnDataSource.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c SqliteColumnDataSourceFactory.cpp -o SqliteColumnDataSourceFactory.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c SqliteDataFrame.cpp -o SqliteDataFrame.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c SqliteResult.cpp -o SqliteResult.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c SqliteResultImpl.cpp -o SqliteResultImpl.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c affinity.c -o affinity.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c connection.cpp -o connection.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c extension-functions.c -o extension-functions.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c extensions.cpp -o extensions.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c import-file.c -o import-file.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c regexp.c -o regexp.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c result.cpp -o result.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c rsqlite.cpp -o rsqlite.o
+x86_64-conda-linux-gnu-cc -I"/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/include" -DNDEBUG -I. -Ivendor -DRSQLITE_USE_BUNDLED_SQLITE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_STAT4 -DSQLITE_SOUNDEX -DSQLITE_USE_URI=1 -DRCPP_DEFAULT_INCLUDE_CALL=false -DRCPP_USING_UTF8_ERROR_STRING -DBOOST_NO_AUTO_PTR -DSQLITE_MAX_LENGTH=2147483647 -DHAVE_USLEEP=1 -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/plogr/include' -I'/gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/Rcpp/include' -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -I/projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib  -fvisibility=hidden -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/tcollin2/miniconda3/envs/tbtad/include -fdebug-prefix-map=/home/conda/feedstock_root/build_artifacts/r-base-split_1642327566152/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/projects/bgmp/tcollin2/miniconda3/envs/tbtad=/usr/local/src/conda-prefix  -c vendor/sqlite3/sqlite3.c -o vendor/sqlite3/sqlite3.o
+x86_64-conda-linux-gnu-c++ -std=gnu++14 -shared -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/lib -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -Wl,-rpath-link,/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib -o RSQLite.so DbColumn.o DbColumnDataSource.o DbColumnDataSourceFactory.o DbColumnStorage.o DbConnection.o DbDataFrame.o DbResult.o RcppExports.o SqliteColumnDataSource.o SqliteColumnDataSourceFactory.o SqliteDataFrame.o SqliteResult.o SqliteResultImpl.o affinity.o connection.o extension-functions.o extensions.o import-file.o regexp.o result.o rsqlite.o vendor/sqlite3/sqlite3.o -L/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/lib -lR
+installing to /gpfs/projects/bgmp/tcollin2/miniconda3/envs/tbtad/lib/R/library/00LOCK-RSQLite/00new/RSQLite/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RSQLite)
+* installing *source* package ‘KEGGREST’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (KEGGREST)
+* installing *source* package ‘BiocFileCache’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocFileCache)
+* installing *source* package ‘AnnotationDbi’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘packageName’ in package ‘AnnotationDbi’
+Creating a generic function for ‘ls’ from package ‘base’ in package ‘AnnotationDbi’
+Creating a generic function for ‘eapply’ from package ‘base’ in package ‘AnnotationDbi’
+Creating a generic function for ‘exists’ from package ‘base’ in package ‘AnnotationDbi’
+Creating a generic function for ‘sample’ from package ‘base’ in package ‘AnnotationDbi’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (AnnotationDbi)
+* installing *source* package ‘biomaRt’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (biomaRt)
+* installing *source* package ‘org.Hs.eg.db’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (org.Hs.eg.db)
+* installing *source* package ‘GenomicFeatures’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomicFeatures)
+* installing *source* package ‘TxDb.Hsapiens.UCSC.hg19.knownGene’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TxDb.Hsapiens.UCSC.hg19.knownGene)
+* installing *source* package ‘FDb.InfiniumMethylation.hg19’ ...
+** using staged installation
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (FDb.InfiniumMethylation.hg19)
+
+The downloaded source packages are in
+	‘/tmp/RtmpgQ1Stj/downloaded_packages’
+Old packages: 'BiocParallel', 'cli', 'clipr', 'colorspace', 'crayon', 'dplyr',
+  'evaluate', 'GenomeInfoDb', 'GenomicRanges', 'glue', 'jsonlite', 'later',
+  'mgcv', 'rlang', 'S4Vectors', 'tidyselect', 'tinytex', 'XML', 'yaml'
+Loading required package: GenomicFeatures
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘AnnotationDbi’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Loading required package: TxDb.Hsapiens.UCSC.hg19.knownGene
+Loading required package: org.Hs.eg.db
+
+Fetching coordinates for hg19...
+Error in gzfile(file, "wb") : cannot open the connection
+Calls: save -> gzfile
+In addition: Warning message:
+In gzfile(file, "wb") :
+  cannot open compressed file '/projects/bgmp/shared/2021_projects/VCU/tb_tad_3/Data/Methylation/hm450.Rdata', probable reason 'Permission denied'
+Execution halted
+Command exited with non-zero status 1
+	Command being timed: "Rscript preprocess.r"
+	User time (seconds): 216.07
+	System time (seconds): 19.56
+	Percent of CPU this job got: 94%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:10.27
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1361440
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 9567368
+	Voluntary context switches: 61015
+	Involuntary context switches: 2239
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1343328
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

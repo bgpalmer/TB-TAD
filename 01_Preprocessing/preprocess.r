@@ -38,6 +38,11 @@ bdsGR_GM12878 <- bdsGR
 #######################################
 #####   methylation infos
 #######################################
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("FDb.InfiniumMethylation.hg19")
+
 library(FDb.InfiniumMethylation.hg19)
 
 prob_data<-read.table(paste0(Sys.getenv('DATADIR'), '/Methylation/GSE62111_series_matrix.txt'),header=T,sep = '\t',stringsAsFactors = F, fill=TRUE, comment.char='!')
