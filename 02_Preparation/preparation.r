@@ -76,6 +76,8 @@ gen_data_1<-function(train_region=region_GR,by_len=10000,n_neighbors=10){
   	#################################################
   	###     add methylation values
   	#################################################
+
+    
   	tmp<-findOverlaps(me,anGR,type='within',ignore.strand=T)
   	prob_valid <- me$p1<0.05 #p-value
   	prob_v<-cbind(me$v1) #methylation beta value
@@ -83,6 +85,22 @@ gen_data_1<-function(train_region=region_GR,by_len=10000,n_neighbors=10){
   	mcols(anGR)[,'me']<-NA
   	tmp2<-tmp1[,.(mv=mean(prob,na.rm=T)),by=id]
   	mcols(anGR)[,'me'][tmp2$id]<-tmp2$mv
+
+
+    ###############################################
+    ###     TFBS information (Transcription factors binding sites)
+    ##############################################
+    
+    
+    for(gene in tfbsname){
+      tfbs_tmp<-tfbsGR[tfbsGR$type==gene,]
+      tmp<-findOverlaps(tfbs_tmp,anGR,type = 'within',ignore.strand=T)
+      tmp1<-data.table(v=tfbs_tmp$value[tmp@from],id=tmp@to)
+      mcols(anGR)[,paste('tfbs',gene,sep='_')]<-NA
+      tmp2<-tmp1[,.(mv=mean(v,na.rm=T)),by=id]
+      mcols(anGR)[,paste('tfbs',gene,sep='_')][tmp2$id]<-tmp2$mv
+    }
+    
 
 
     #####################################################
@@ -106,8 +124,6 @@ gen_data_1<-function(train_region=region_GR,by_len=10000,n_neighbors=10){
   vars<-setdiff(vars,c('bdsGR'))
   
   tictoc::tic()
-
-  print(ana_list)
   
   ana_dt_old<-as.data.table(ldply(ana_list,
                                   function(x){cbind(chr=as.vector(x@seqnames),
@@ -192,4 +208,4 @@ gen_data_1<-function(train_region=region_GR,by_len=10000,n_neighbors=10){
 all_data_1 <- gen_data_1(region_GR,by_len=region_bin_len,n_neighbors=neighbors)
 
 save(all_data_1,region_GR,file="all_data_1_GM12878.Rdata")
-save(list=ls(),file='pre_info_08132020.Rdata')
+# save(list=ls(),file='pre_info_08132020.Rdata')
