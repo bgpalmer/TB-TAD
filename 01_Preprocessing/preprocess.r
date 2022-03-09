@@ -34,6 +34,23 @@ bdsGR_GM12878 <- bdsGR
 # save(list=ls(),file='bdsdf.Rdata')
 
 
+###############################################
+###     TFBS information (Transcription factors binding sites)
+##############################################
+
+BS<-fread(paste0(Sys.getenv('DATADIR'), '/TFBS/tfbs.tsv'),sep = '\t',header = T)
+# BSwC<-fread('Data/TFBS/wgEncodeRegTfbsClusteredWithCellsV3.bed',sep = '\t',header = F)
+# names(BSwC)<-c('chr','start','end','type','value','cell')
+names(BS)<-c('shrug', 'chr','start','end','type','value','NoC','cellNo1','cellNo2')
+
+tfbsGR<-GRanges(seqnames=BS$chr
+                ,ranges=IRanges(start=BS$start,end=BS$end)
+                ,strand='*'
+                ,type=BS$type
+                ,value=BS$value)
+
+tfbsname<-unique(tfbsGR$type)
+
 
 #######################################
 #####   methylation infos
