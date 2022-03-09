@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#SBATCH --partition=bgmp
+#SBATCH --account=bgmp
+#SBATCH --job-name=prep
+#SBATCH --output=preparation_r_%j.out
+#SBATCH --error=preparation_r_%j.out
+#SBATCH --time=1-00:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=128G
+
+/usr/bin/time -v Rscript preparation.r
