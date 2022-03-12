@@ -16,3 +16,37 @@ The current issue with 3C technology is that it is expensive. New efforts to ide
 
 Our goal is to replicate work done in this field using pytorch and to see if we are able to modify the algorithm to increase accuracy. In doing so, we attempt to contribute to TAD prediction. 
 
+## Results
+
+[TODO: needs accurate numbers of final methylation set]
+
+Our data was split into 70:30 training and test sets. In total, there were 212544 observations in the training set, and 91074 observations in the test set. There were 27 columns in our final data table for the methylation data. Each column represents a 10kb bin around the tad, and the amount of methylation occuring within that 10 kb bin. We would expect to see higher values in those bins if the coordinates assocatied with a tad are near the tad boundary.
+
+With our gradient boosting machine algorithm, we were able to achieve roughly 77% accuracy with the test set. 
+
+[TODO: ROC score here. there is a function from [scikit](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html)]
+
+Again only using the methylation data, we ran using the gradient boosting model provided by H2o.ai [TODO: link], which was used by the researchers. We used their code in order to run this model, but removed the inputs for transcription factor, transcription start sites, histone sites, and distances to centromeres, as we did with our own data. We were able to run the script and achieved 88% accuracy. Below are ROC scores showing the performance of this model.
+
+![ROC Scores](./GM12878.jpg)
+Figure X. Receiver Operating Characteristic curve using the GBM model from H2o.ai. The curve shows the true positive rate against the false positive rate.
+
+## Discussion
+
+We we're unable to outperform h2o.ai with their gradient boosting machine using the same dataset with our custom function.
+
+[list some of the drawbacks here]
+
+## Statement of Individual Contributions
+
+Both authors worked on the assignment together but there were areas that mostly had dedicated attention from a single author.
+
+A large portion of the data searching, gathering, preprocessing, and preparation was done by Brian. Essentially, this involved creating the inputs and outputs to be served to the model. This required reading and understanding the paper's methods, and determining where the data was located. One source were the [GEO ENCODE](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi) asscension numbers located in the data availability section. This is where many of the cell line specific matrixes were found. Additionally, the [3D Genome Browser](http://3dgenome.fsm.northwestern.edu/) was used to collect TAD boundaries, specifically used as the hard labeled data. Transcription binding sites were acquired from the [UCSC Genome Browser](https://genome.ucsc.edu/).
+
+A large amount of headache was caused by the data gather step, particularly when using GEO. While there were 10 - 12 ascension numbers, the methods on which data to use or how to modify the data was difficult to determine. In the interest of time, we ultimately decided to use the data that was easier to find (ie. methylation and transcription binding sites), and adjust our project goals to use just that data. 
+
+The preprocessing and data preparation steps were largely based on the scripts provided by the papers authors. The data for methylation was gathered from GEO ENCODE. P-values were included in the dataset, and so methylation values under p=0.05 were included. Finally, the average methylation score was taken for all valid scores that were within the 10kb range. Thus, all methylation and training and test data used significant methylation data average per 10 kb bin.
+
+The transcription binding site data was gathered from the UCSC Genome Browser. Transcription binding sites for genes were found and overlapping sections were pulled out. Overlapping sections were of interest because this is where the binding sites are in greater density, which implicitly demarcates tad boundary sites. The average score was calculated by the number of overlapping binding sites within the 10 kb region. 
+
+The final preparation step was to generate 10 kb neighbors for each feature. The neighbor generation allow extension of relationships between features for each tad boundary. Since these epigenetic features are known to be around TAD boundaries, this allows our TAD predictions to be more engrained in the larger epigentic picture.
