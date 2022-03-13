@@ -16,13 +16,74 @@ knitr::opts_chunk$set(echo = TRUE)
 # df <- file.path('C:\Users\14436\projects\ML\TB-TAD\02_Preparation\all_data_1_GM12878.Rdata') %>%
 #   read.csv()
 
-load('all_data_1_GM12878.Rdata')
+library(stringr)
 
+me <- colnames(all_data_1)[str_detect(colnames(all_data_1),'me')]
+TF <- c("CTCF","POLR2A","EP300","RAD21","MAX","GABPA","SIN3A","ELF1","EGR1","SRF","PML","SMARCA5")
+TF <- c("CTCF","POLR2A","EP300","RAD21")
+
+
+# load("all_data_1_GM12878.Rdata")
+region_GR_GM12878<-region_GR
+all_data_1_GM12878<-all_data_1
+all_data_1 <- all_data_1_GM12878
+
+#Select training and testing data
+train_data_1<- all_data_1[which(region_GR$train==1),] #70%
+test_data_1 <- all_data_1[which(region_GR$train==0),] #30%
+
+colnames(all_data_1)[str_detect(colnames(all_data_1),TF)]
+
+tfbs <- colnames(train_data_1)[str_detect(colnames(train_data_1),'tfbs')]
+# tss <- colnames(train_data_1)[str_detect(colnames(train_data_1),'tss')]
+# to_cent <- colnames(train_data_1)[str_detect(colnames(train_data_1),'to_cent')]
+me <- c("me",colnames(train_data_1)[startsWith(colnames(train_data_1),'me_R_')|startsWith(colnames(train_data_1),'me_L_')])
+hist <- c("H3K27ac","H3K27me3","H3K36me3","H3K4me1","H3K4me2","H3K9ac","H3K9me3","H4K20me1")
+TF <- c("CTCF","POLR2A","EP300","RAD21","MAX","GABPA","SIN3A","ELF1","EGR1","SRF","PML","SMARCA5")
+# ChIPseq <- setdiff(colnames(train_data_1),c(tfbs,tss,to_cent,me,"bdsGR","bds","id","chr","start","end","me"))
+
+TF
+# y <- colnames(all_data_1)[str_detect(colnames(all_data_1),TF)]
+# 
+jpeg("methylation.jpg")
+hist(all_data_1$me, main = 'Histogram of Methylation Values', xlab = 'Methylation Scores in each 10 kb Bin')
+dev.off()
+
+y <- colnames(all_data_1)[str_detect(colnames(all_data_1),TF)]
+
+m <- c()
+for (tf in TF) {
+  ctcf <- colnames(train_data_1)[str_detect(colnames(train_data_1), tf)]
+  m <- append(m, colMeans(all_data_1[,c(ctcf)]))
+}
+
+jpeg("TF.jpg")
+hist(m, main = 'Distribution of Transcription Factor Data', xlab = 'Number of Elements in each 10 kb Bin')
+dev.off()
+
+histones  <- colnames(train_data_1)[str_detect(colnames(train_data_1), 'H3K27me3')]
+h <- c()
+for (tf in TF) {
+  ctcf <- colnames(train_data_1)[str_detect(colnames(train_data_1), tf)]
+  h <- append(h, colMeans(all_data_1[,c(histones)]))
+}
+
+
+# jpeg("hist.jpg")
+hist(h, main = 'Distribution of Histone Data', xlab = 'Number of Elements in each 10 kb Bin')
+# dev.off()
+
+cs <- colnames(train_data_1)[str_detect(colnames(train_data_1), 'CTCF_10A')]
+
+
+
+counts <- data.frame(methylation = length(m), tf = length(TF), histones = length(h), chipseq = length(cs))
+write.csv(x = counts,file = 'counts.csv')
 ```
+
 
 ```{r}
 
-library(tidyverse)
 library(stringr)
 library(data.table)
 library(ROSE)
@@ -38,6 +99,7 @@ library(h2o)
 localH2O<-h2o.init(nthreads = 6,max_mem_size = "32G", startH2O = T, ip = 'localhost', port = 5432)
 h2o.removeAll()
 
+# all_data_1[is.na(all_data_1)] = 0
 
 # load("all_data_1_GM12878.Rdata")
 region_GR_GM12878<-region_GR
@@ -48,21 +110,19 @@ all_data_1 <- all_data_1_GM12878
 #Select training and testing data
 train_data_1<- all_data_1[which(region_GR$train==1),] #70%
 test_data_1 <- all_data_1[which(region_GR$train==0),] #30%
-#if testing MCF7 
-# test_data_1<-all_data_1[which(region_GR$reg==0),]
 
-#select your features
+
 tfbs <- colnames(train_data_1)[str_detect(colnames(train_data_1),'tfbs')]
 # tss <- colnames(train_data_1)[str_detect(colnames(train_data_1),'tss')]
 # to_cent <- colnames(train_data_1)[str_detect(colnames(train_data_1),'to_cent')]
 me <- c("me",colnames(train_data_1)[startsWith(colnames(train_data_1),'me_R_')|startsWith(colnames(train_data_1),'me_L_')])
-# hist <- c("H3K27ac","H3K27me3","H3K36me3","H3K4me1","H3K4me2","H3K9ac","H3K9me3","H4K20me1")
 # TF <- c("CTCF","POLR2A","EP300","RAD21","MAX","GABPA","SIN3A","ELF1","EGR1","SRF","PML","SMARCA5")
 # ChIPseq <- setdiff(colnames(train_data_1),c(tfbs,tss,to_cent,me,"bdsGR","bds","id","chr","start","end","me"))
 
+
 y="bds"
 # x=c('chr',tfbs,tss,to_cent,me,ChIPseq)
-x=c('chr',me, tfbs)
+x=c('chr',"me")
 
 
 data_h2o<-as.h2o(train_data_1)

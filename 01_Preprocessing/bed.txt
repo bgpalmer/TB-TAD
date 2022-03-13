@@ -1,0 +1,3 @@
+file_name	study	target
+GSM2949415_10A_H3K27me3.narrowPeak	GSE109721	H3K27me3_10A
+GSE98551_MCF10A_CTCF_pooled_peaks_passIDR.05.narrowPeak	GSE98551	CTCF_10A
