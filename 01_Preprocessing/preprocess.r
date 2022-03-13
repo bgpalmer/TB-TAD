@@ -34,6 +34,21 @@ bdsGR_GM12878 <- bdsGR
 # save(list=ls(),file='bdsdf.Rdata')
 
 
+####################################################################################
+#########         beds files      
+####################################################################################
+
+bedfl<-read.table(paste0(Sys.getenv('DATADIR'), '/BroakPeak/GSE98551_MCF10A_CTCF_pooled_peaks_passIDR.05.narrowPeak'),sep = '\t',header = F)
+bedf2<-read.table(paste0(Sys.getenv('DATADIR'), '/BroakPeak/GSM2949414_10A_H3K4me3.broadPeak'),sep = '\t',header = F)
+bedf3<-read.table(paste0(Sys.getenv('DATADIR'), '/BroakPeak/GSM2949415_10A_H3K27me3.narrowPeak'),sep = '\t',header = F)
+bedf4<-read.table(paste0(Sys.getenv('DATADIR'), '/BroakPeak/GSM2949416_10A_H3K79me2.broadPeak'),sep = '\t',header = F)
+
+bed_data1<-c(bedfl, bedf2, bedf3, bedf4)
+#standardize
+
+peak_col_names<-c('chrom','start','end','name','score','strand','sig','pv','qv','peak')
+
+
 ###############################################
 ###     TFBS information (Transcription factors binding sites)
 ##############################################
