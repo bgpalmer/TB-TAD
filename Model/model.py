@@ -4,10 +4,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sklearn.tree import DecisionTreeRegressor
-# To be used for comparison with the custom implementation
 from sklearn.ensemble import GradientBoostingClassifier
 
-# Handling cuda availability
+# Check cuda cores options
 USE_CUDA = torch.cuda.is_available()
 gpus = [0]
 if USE_CUDA:
@@ -16,10 +15,9 @@ FloatTensor = torch.cuda.FloatTensor if USE_CUDA else torch.FloatTensor
 LongTensor = torch.cuda.LongTensor if USE_CUDA else torch.LongTensor
 ByteTensor = torch.cuda.ByteTensor if USE_CUDA else torch.ByteTensor
 
-#######################################################################################################
 class LossFunctionMinimizer(nn.Module):
     def __init__(self, type):
-        # type can be one of the 2 : "regressor" or "classifier"
+        
         super(LossFunctionMinimizer, self).__init__()
         self.type = type
         self.current_leaf_value = nn.Parameter(data=FloatTensor([0.0]), requires_grad=True)
@@ -45,7 +43,7 @@ class LossFunctionMinimizer(nn.Module):
         loss = F.mse_loss(values, targets_leaf_tensor)
         return loss        
 
-
+# Determine Residuals
 class ResidualsCalculator(nn.Module):
     def __init__(self, predicted_values, type):
         super(ResidualsCalculator, self).__init__()
@@ -72,7 +70,6 @@ class ResidualsCalculator(nn.Module):
         loss = F.mse_loss(values, targets)
         return loss  
 
-#######################################################################################################
 def fit_regression_tree_classifier_to_residuals(X_data, y_data, max_depth): # y_data -> residuals
     tree_regressor = DecisionTreeRegressor(max_depth=max_depth)
     tree_regressor.fit(X_data, y_data)
@@ -82,8 +79,6 @@ def fit_regression_tree_classifier_to_residuals(X_data, y_data, max_depth): # y_
     unique_paths = list(set(leaf_buckets))
     return (leaf_buckets, unique_paths, tree_regressor)
 
-#######################################################################################################
-# Combining all the pieces together
 class PytorchBasedGenericGradientBoost():
     def __init__(self, type, n_trees, max_depth, GRADIENT_BOOST_LEARNING_RATE = 0.1, MINIMIZER_LEARNING_RATE = 0.001, MINIMIZER_TRAINING_EPOCHS = 5000):
         '''
@@ -94,11 +89,9 @@ class PytorchBasedGenericGradientBoost():
         self.type = type
         self.gradient_boost_learning_rate = GRADIENT_BOOST_LEARNING_RATE
         self.minimizer_learning_rate = MINIMIZER_LEARNING_RATE
-        self.minimizer_training_epochs = MINIMIZER_TRAINING_EPOCHS
-        # Variables to hold output of algorithm
+        self.minimizer_training_epochs = MINIMIZER_TRAINING_EPOCHS   
         self.initial_prediction = None
         self.regression_trees = []
-        # Get an instance of a minimizer
         self.minimizer = LossFunctionMinimizer(self.type)
         if USE_CUDA:
             self.minimizer.cuda()
@@ -119,12 +112,11 @@ class PytorchBasedGenericGradientBoost():
         loss = model.loss(targets)
         model.zero_grad()
         loss.backward()
-        residuals = model.predicted_values.grad.clone() # deep copy of the input/gradients
+        residuals = model.predicted_values.grad.clone() 
         return residuals
     def fit(self, X, y):
         X_values = X.copy()
         y_values = y.copy()
-        # Initialization phase
         if USE_CUDA:
             initial_values = torch.zeros(y_values.shape,1).cuda()
         else:
@@ -143,7 +135,7 @@ class PytorchBasedGenericGradientBoost():
             prediction_values_temp = np.array([])
 
             for unique_cluster in unique_clusters:
-                indices = [1 if el == unique_cluster else 0 for el in leaf_buckets]
+                indices = [1 if n == unique_cluster else 0 for n in leaf_buckets]
                 y_leaf = y_values[np.array(indices) == 1]
                 X_leaf = X_values[np.array(indices) == 1]
                 predictions_leaf = prediction_values[np.array(indices) == 1]
